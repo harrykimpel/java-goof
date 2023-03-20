@@ -41,9 +41,9 @@ jobs:
 
       - name: Snyk Open Source Scanning
         run: |
-          snyk test --org=${{ secrets.SNYK_ORG }} --all-projects --sarif-file-output=snyk-oss.sarif
-          # snyk test --org=${{ secrets.SNYK_ORG }} --all-projects --sarif-file-output=snyk-oss.sarif --severity-threshold=medium
-          snyk monitor --org=${{ secrets.SNYK_ORG }} --all-projects
+          snyk test --org=harryazure --all-projects --sarif-file-output=snyk-oss.sarif
+          # snyk test --org=harryazure --all-projects --sarif-file-output=snyk-oss.sarif --severity-threshold=medium
+          snyk monitor
         continue-on-error: true
       - name: Upload results to GitHub Open Source Scanning
         uses: github/codeql-action/upload-sarif@v2
@@ -52,14 +52,13 @@ jobs:
 
       - name: Snyk Code Scanning
         run: |
-          snyk code test --org=${{ secrets.SNYK_ORG }} --sarif-file-output=snyk-code.sarif
-          # snyk code test --org=${{ secrets.SNYK_ORG }} --report --project-name='SAST'
+          snyk code test --org=harryazure --sarif-file-output=snyk-code.sarif
+          # snyk code test --org=harryazure --report --project-name='SAST'
         continue-on-error: true
       - name: Upload results to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: snyk-code.sarif
-
       # save the HTML in the artifact
       #- name: Use the Upload Artifact GitHub Action
       #  uses: actions/upload-artifact@v2
