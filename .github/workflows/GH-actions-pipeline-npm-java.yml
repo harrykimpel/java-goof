@@ -45,7 +45,7 @@ jobs:
           snyk monitor
         continue-on-error: true
       - name: Upload results to GitHub Open Source Scanning
-        uses: github/codeql-action/upload-sarif@v1
+        uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: snyk-oss.sarif
 
@@ -53,7 +53,7 @@ jobs:
         run: snyk code test --org=${{ secrets.SNYK_ORG }} --sarif-file-output=snyk-code.sarif
         continue-on-error: true
       - name: Upload results to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v1
+        uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: snyk-code.sarif
 
