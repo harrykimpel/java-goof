@@ -41,7 +41,7 @@ jobs:
 
       - name: Snyk Open Source Scanning
         run: |
-          snyk test --org=harryazure --all-projects --sarif-file-output=snyk-oss.sarif
+          snyk test  --sarif-file-output=snyk-oss.sarif
           # snyk test --org=harryazure --all-projects --sarif-file-output=snyk-oss.sarif --severity-threshold=medium
           snyk monitor
         continue-on-error: true
